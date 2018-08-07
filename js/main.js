@@ -1,7 +1,6 @@
 'use strict';
 
-const screens = Array.from(document.querySelectorAll(`template`)).
-  map((item) => item.content);
+const screens = document.querySelectorAll(`template:not(#modal-error):not(#modal-confirm)`);
 const app = document.querySelector(`.app`);
 const main = app.querySelector(`.main`);
 let current = 0;
@@ -32,7 +31,7 @@ const arrows = `<div class="arrows__wrap">
 
 const showScreen = (item) => {
   main.textContent = ``;
-  main.appendChild(item.cloneNode(true));
+  main.appendChild(item.content.cloneNode(true));
 };
 
 const select = (index) => {
@@ -56,17 +55,12 @@ document.addEventListener(`keydown`, (evt) => {
 select(0);
 
 app.insertAdjacentHTML(`beforeEnd`, arrows);
-const buttonsBox = app.querySelector(`.arrows__wrap`);
-const buttons = buttonsBox.querySelectorAll(`.arrows__btn`);
+const buttons = app.querySelectorAll(`.arrows__btn`);
 
-buttonsBox.addEventListener(`click`, (evt) => {
-  switch (evt.target) {
-    case buttons[0]:
-      select(current - 1);
-      break;
-    case buttons[1]:
-      select(current + 1);
-      break;
-  }
+buttons[0].addEventListener(`click`, () => {
+  select(current - 1);
 });
 
+buttons[1].addEventListener(`click`, () => {
+  select(current + 1);
+});
