@@ -1,7 +1,7 @@
 # Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анна Мут](https://up.htmlacademy.ru/ecmascript/6/user/472443).
-* Наставник: `Неизвестно`.
+* Наставник:  [Сергей Вохмянин](https://htmlacademy.ru/profile/id530823).
 
 ---
 
