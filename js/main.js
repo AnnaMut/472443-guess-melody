@@ -31,9 +31,8 @@ const arrows = `<div class="arrows__wrap">
 </div>`;
 
 const showScreen = (item) => {
-  main.innerHTML = ``;
+  main.textContent = ``;
   main.appendChild(item.cloneNode(true));
-  app.insertAdjacentHTML(`beforeend`, arrows);
 };
 
 const select = (index) => {
@@ -55,3 +54,19 @@ document.addEventListener(`keydown`, (evt) => {
 });
 
 select(0);
+
+app.insertAdjacentHTML(`beforeEnd`, arrows);
+const buttonsBox = app.querySelector(`.arrows__wrap`);
+const buttons = buttonsBox.querySelectorAll(`.arrows__btn`);
+
+buttonsBox.addEventListener(`click`, (evt) => {
+  switch (evt.target) {
+    case buttons[0]:
+      select(current - 1);
+      break;
+    case buttons[1]:
+      select(current + 1);
+      break;
+  }
+});
+
