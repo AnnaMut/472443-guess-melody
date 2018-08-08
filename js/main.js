@@ -11,8 +11,8 @@ const screenList = [
 
 const screens = screenList.map((item) => document.querySelector(`#${item}`).content);
 
-const app = document.querySelector(`.app`);
-const main = app.querySelector(`.main`);
+const body = document.querySelector(`body`);
+const main = document.querySelector(`.main`);
 let current = 0;
 
 const Keys = {
@@ -31,7 +31,8 @@ const arrows = `<div class="arrows__wrap">
       }
       .arrows__btn {
         background: none;
-        border: 2px solid black;
+        border: 2px solid #ff9749;
+        color: #ff9749;
         padding: 5px 20px;
       }
     </style>
@@ -70,8 +71,8 @@ document.addEventListener(`keydown`, (evt) => {
 
 showScreen(0);
 
-app.insertAdjacentHTML(`beforeEnd`, arrows);
-const buttons = app.querySelectorAll(`.arrows__btn`);
+body.insertAdjacentHTML(`beforeEnd`, arrows);
+const buttons = body.querySelectorAll(`.arrows__btn`);
 
 buttons[0].addEventListener(`click`, () => {
   showPreviousScreen();
