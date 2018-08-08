@@ -1,6 +1,6 @@
 'use strict';
 
-const screens = [
+const screenList = [
   `welcome`,
   `game-artist`,
   `game-genre`,
@@ -9,13 +9,15 @@ const screens = [
   `fail-tries`
 ];
 
+const screens = screenList.map((item) => document.querySelector(`#${item}`).content);
+
 const app = document.querySelector(`.app`);
 const main = app.querySelector(`.main`);
 let current = 0;
 
-const KeyCodes = {
-  LEFT: 37,
-  RIGHT: 39
+const Keys = {
+  LEFT: `ArrowLeft`,
+  RIGHT: `ArrowRight`
 };
 
 const arrows = `<div class="arrows__wrap">
@@ -37,13 +39,10 @@ const arrows = `<div class="arrows__wrap">
     <button class="arrows__btn">-></button>
 </div>`;
 
-const getScreen = (index) => {
-  return document.querySelector(`#${screens[index]}`).content.cloneNode(true);
-};
 
 const showScreen = (index) => {
   main.textContent = ``;
-  main.appendChild(getScreen(index));
+  main.appendChild(screens[index].cloneNode(true));
 };
 
 const showPreviousScreen = () => {
@@ -61,10 +60,10 @@ const showNextScreen = () => {
 };
 
 document.addEventListener(`keydown`, (evt) => {
-  if (evt.keyCode === KeyCodes.LEFT) {
+  if (evt.key === Keys.LEFT) {
     showPreviousScreen();
   }
-  if (evt.keyCode === KeyCodes.RIGHT) {
+  if (evt.key === Keys.RIGHT) {
     showNextScreen();
   }
 });
