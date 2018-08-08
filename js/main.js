@@ -1,6 +1,14 @@
 'use strict';
 
-const screens = document.querySelectorAll(`template:not(#modal-error):not(#modal-confirm)`);
+const screens = [
+  `welcome`,
+  `game-artist`,
+  `game-genre`,
+  `result-success`,
+  `fail-time`,
+  `fail-tries`
+];
+
 const app = document.querySelector(`.app`);
 const main = app.querySelector(`.main`);
 let current = 0;
@@ -29,38 +37,47 @@ const arrows = `<div class="arrows__wrap">
     <button class="arrows__btn">-></button>
 </div>`;
 
-const showScreen = (item) => {
-  main.textContent = ``;
-  main.appendChild(item.content.cloneNode(true));
+const getScreen = (index) => {
+  return document.querySelector(`#${screens[index]}`).content.cloneNode(true);
 };
 
-const select = (index) => {
-  index = index < 0 ? screens.length - 1 : index;
-  index = index >= screens.length ? 0 : index;
-  current = index;
-  showScreen(screens[current]);
+const showScreen = (index) => {
+  main.textContent = ``;
+  main.appendChild(getScreen(index));
+};
+
+const showPreviousScreen = () => {
+  if (current > 0) {
+    current--;
+    showScreen(current);
+  }
+};
+
+const showNextScreen = () => {
+  if (current < screens.length - 1) {
+    current++;
+    showScreen(current);
+  }
 };
 
 document.addEventListener(`keydown`, (evt) => {
-  switch (evt.keyCode) {
-    case KeyCodes.RIGHT:
-      select(current + 1);
-      break;
-    case KeyCodes.LEFT:
-      select(current - 1);
-      break;
+  if (evt.keyCode === KeyCodes.LEFT) {
+    showPreviousScreen();
+  }
+  if (evt.keyCode === KeyCodes.RIGHT) {
+    showNextScreen();
   }
 });
 
-select(0);
+showScreen(0);
 
 app.insertAdjacentHTML(`beforeEnd`, arrows);
 const buttons = app.querySelectorAll(`.arrows__btn`);
 
 buttons[0].addEventListener(`click`, () => {
-  select(current - 1);
+  showPreviousScreen();
 });
 
 buttons[1].addEventListener(`click`, () => {
-  select(current + 1);
+  showNextScreen();
 });
