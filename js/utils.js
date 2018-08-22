@@ -18,4 +18,3 @@ export const formatWord = (number, item) => {
   }
 };
 
-
