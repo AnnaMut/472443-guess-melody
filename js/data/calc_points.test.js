@@ -14,8 +14,8 @@ describe(`Calculate Points`, () => {
     assert.equal(calculatePoints(getAnswers(true, 30, 3), 0), -1);
   });
 
-  it(`should return 0 when notes > 3`, () => {
-    assert.equal(calculatePoints(getAnswers(undefined, 30, 10), 4), 0);
+  it(`Notes should be >= 0`, () => {
+    assert.throws(() => calculatePoints(getAnswers(undefined, 30, 10), -3), `Notes should be >= 0`);
   });
 
   it(`should return 12 when 8 answers are correct and time of correct answer < 30 seconds`, () => {

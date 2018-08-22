@@ -1,6 +1,5 @@
 const MAX_QUESTIONS = 10;
 const FAST_TIME = 30;
-const MAX_NOTES = 3;
 
 const Points = {
   LOOSE: -1,
@@ -14,8 +13,8 @@ export const calculatePoints = (answers, notes) => {
   if (answers.length < MAX_QUESTIONS) {
     return Points.LOOSE;
   }
-  if (notes > MAX_NOTES) {
-    return 0;
+  if (notes < 0) {
+    throw new Error(`Notes should be >= 0`);
   }
   answers.forEach((answer) => {
     if (answer.correct && answer.time < FAST_TIME) {

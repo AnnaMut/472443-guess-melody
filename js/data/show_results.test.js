@@ -1,4 +1,4 @@
-import assert from 'assert';
+import {assert} from 'chai';
 import {showResults} from './show_results';
 
 const statistics = [
@@ -36,7 +36,7 @@ describe(`Show results`, () => {
   });
 
   it(`should return У вас закончились все попытки. Ничего, повезёт в следующий раз!`, () => {
-    assert.equal(showResults(statistics, getGameResult(10, 3, 45)), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
+    assert.equal(showResults(statistics, getGameResult(10, 4, 45)), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
   });
 
   it(`should return Вы заняли 1 место из 5 игроков. Это лучше, чем у 80% игроков`, () => {

@@ -3,7 +3,7 @@ export const showResults = (statistics, gameResult) => {
   if (gameResult.time <= 0) {
     return `Время вышло! Вы не успели отгадать все мелодии`;
   }
-  if (gameResult.notes >= 3) {
+  if (gameResult.notes > 3) {
     return `У вас закончились все попытки. Ничего, повезёт в следующий раз!`;
   }
   const userPoints = gameResult.points;
