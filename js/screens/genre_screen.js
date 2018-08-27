@@ -79,6 +79,24 @@ export default (state) => {
 
   genreScreen.querySelector(`.game__back`).addEventListener(`click`, replayButtonClickHandler);
 
+  const players = Array.from(genreScreen.querySelectorAll(`div.track`));
+  const playerButtons = players.map((element) => element.querySelector(`button`));
+
+  const playAudio = (evt) => {
+    const audio = genreScreen.querySelector(`audio`);
+    if (audio.paused) {
+      evt.target.classList.replace(`track__button--play`, `track__button--pause`);
+      audio.play();
+    } else {
+      evt.target.classList.replace(`track__button--pause`, `track__button--play`);
+      audio.pause();
+    }
+  };
+
+  playerButtons.forEach((item) => {
+    item.addEventListener(`click`, playAudio);
+  });
+
   return genreScreen;
 
 };

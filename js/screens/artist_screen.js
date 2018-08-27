@@ -61,6 +61,20 @@ ${header(state)}
 
   artistScreen.querySelector(`.game__back`).addEventListener(`click`, replayButtonClickHandler);
 
+  const playerButton = artistScreen.querySelector(`div.game__track`).querySelector(`button`);
+
+  const playAudio = () => {
+    const audio = artistScreen.querySelector(`audio`);
+    if (audio.paused) {
+      playerButton.classList.replace(`track__button--play`, `track__button--pause`);
+      audio.play();
+    } else {
+      playerButton.classList.replace(`track__button--pause`, `track__button--play`);
+      audio.pause();
+    }
+  };
+  playerButton.addEventListener(`click`, playAudio);
+
   return artistScreen;
 
 };
