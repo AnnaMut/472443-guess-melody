@@ -1,10 +1,11 @@
+import string from './string_data';
 
 export const showResults = (statistics, gameResult) => {
   if (gameResult.time <= 0) {
-    return `Время вышло! Вы не успели отгадать все мелодии`;
+    return `${string.result.timeLose}`;
   }
-  if (gameResult.notes > 3) {
-    return `У вас закончились все попытки. Ничего, повезёт в следующий раз!`;
+  if (gameResult.errors > 3) {
+    return `${string.result.loseStat}`;
   }
   const userPoints = gameResult.points;
   const points = statistics.map((item) => item.points);

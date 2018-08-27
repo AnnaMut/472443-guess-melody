@@ -1,5 +1,4 @@
-const MAX_QUESTIONS = 10;
-const FAST_TIME = 30;
+import {MAX_QUESTIONS, Time} from './game_data';
 
 const Points = {
   LOOSE: -1,
@@ -8,19 +7,19 @@ const Points = {
   WRONG: -2
 };
 
-export const calculatePoints = (answers, notes) => {
+export const calculatePoints = (answersArr, errors) => {
   let points = 0;
-  if (answers.length < MAX_QUESTIONS) {
+  if (answersArr.length < MAX_QUESTIONS) {
     return Points.LOOSE;
   }
-  if (notes < 0) {
-    throw new Error(`Notes should be >= 0`);
+  if (errors < 0) {
+    throw new Error(`Errors should be >= 0`);
   }
-  answers.forEach((answer) => {
-    if (answer.correct && answer.time < FAST_TIME) {
+  answersArr.forEach((answer) => {
+    if (answer.correct && answer.time < Time.FAST) {
       points += Points.FAST;
     }
-    if (answer.correct && answer.time >= FAST_TIME) {
+    if (answer.correct && answer.time >= Time.FAST) {
       points += Points.DEFAULT;
     }
     if (!answer.correct) {

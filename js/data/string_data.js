@@ -31,6 +31,7 @@ export default Object.freeze({
   buttons: {
     play: `Начать игру`,
     replay: `Сыграть ещё раз`,
+    loseReplay: `Попробовать ещё раз`,
     answerSend: `Ответить`,
     modalClose: `Закрыть`,
     modalConfirm: `Ок`,

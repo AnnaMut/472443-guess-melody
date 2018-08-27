@@ -4,29 +4,29 @@ import {showResults} from './show_results';
 const statistics = [
   {
     points: 10,
-    notes: 2,
+    errors: 2,
     time: 45
   },
   {
     points: 4,
-    notes: 2,
+    errors: 2,
     time: 90
   },
   {
     points: 8,
-    notes: 1,
+    errors: 1,
     time: 7
   },
   {
     points: 9,
-    notes: 1,
+    errors: 1,
     time: 55
   }
 ];
 
-const getGameResult = (userPoints, userNotes, userTime) => ({
+const getGameResult = (userPoints, userErrors, userTime) => ({
   points: userPoints,
-  notes: userNotes,
+  errors: userErrors,
   time: userTime
 });
 
