@@ -7,9 +7,7 @@ import {showResults} from '../data/show_results';
 import {formatWord} from '../utils';
 
 export default (state) => {
-  const answersArr = state.answersArr;
-  const errors = state.errors;
-  const userPoints = calculatePoints(answersArr, errors);
+  const userPoints = calculatePoints(state);
 
   const result = {
     points: userPoints,

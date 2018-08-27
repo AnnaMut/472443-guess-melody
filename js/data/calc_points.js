@@ -7,15 +7,15 @@ const Points = {
   WRONG: -2
 };
 
-export const calculatePoints = (answersArr, errors) => {
+export const calculatePoints = (state) => {
   let points = 0;
-  if (answersArr.length < MAX_QUESTIONS) {
+  if (state.answersArr.length < MAX_QUESTIONS) {
     return Points.LOOSE;
   }
-  if (errors < 0) {
+  if (state.errors < 0) {
     throw new Error(`Errors should be >= 0`);
   }
-  answersArr.forEach((answer) => {
+  state.answersArr.forEach((answer) => {
     if (answer.correct && answer.time < Time.FAST) {
       points += Points.FAST;
     }

@@ -9,9 +9,20 @@ const getAnswers = (dataType, answerTime, count) => {
   return answersArr;
 };
 
+// const getState = (answers, stateErrors) => ({
+// answersArr: answers,
+//  errors: stateErrors
+// });
+
 describe(`Calculate Points`, () => {
   it(`should return -1 when answers < 10`, () => {
-    assert.equal(calculatePoints(getAnswers(true, 30, 3)), -1);
+    // const answers = getAnswers(true, 30, 3);
+    // assert.equal(calculatePoints(getState(answers, 0)), -1);
+    assert.equal(calculatePoints({answersArr: [
+      {correct: true, time: 30},
+      {correct: true, time: 30},
+      {correct: true, time: 30}
+    ], errors: 0}), -1);
   });
 
   it(`Errors should be >= 0`, () => {
