@@ -1,58 +1,88 @@
 import {assert} from 'chai';
 import {calculatePoints} from './calc_points';
 
-const getAnswers = (dataType, answerTime, count) => {
-  const answersArr = new Array(count).fill({
-    correct: dataType,
-    time: answerTime
-  });
-  return answersArr;
-};
-
-// const getState = (answers, stateErrors) => ({
-// answersArr: answers,
-//  errors: stateErrors
-// });
-
 describe(`Calculate Points`, () => {
   it(`should return -1 when answers < 10`, () => {
-    // const answers = getAnswers(true, 30, 3);
-    // assert.equal(calculatePoints(getState(answers, 0)), -1);
     assert.equal(calculatePoints({answersArr: [
       {correct: true, time: 30},
       {correct: true, time: 30},
       {correct: true, time: 30}
-    ], errors: 0}), -1);
+    ]}), -1);
   });
 
-  it(`Errors should be >= 0`, () => {
-    assert.throws(() => calculatePoints(getAnswers(undefined, 30, 10), -3), `Errors should be >= 0`);
-  });
-
-  it(`should return 12 when 8 answers are correct and time of correct answer < 30 seconds`, () => {
-    let correctAnswers = getAnswers(true, 26, 8);
-    let uncorrectAnswers = getAnswers(false, 26, 2);
-    let totalAnswers = correctAnswers.concat(uncorrectAnswers);
-    assert.equal(calculatePoints(totalAnswers), 12);
+  it(`should return {points: 12, pointFast: 16} when 8 answers are correct and time of correct answer < 30 seconds`, () => {
+    assert.deepEqual(calculatePoints({answersArr: [
+      {correct: true, time: 26},
+      {correct: true, time: 17},
+      {correct: true, time: 25},
+      {correct: true, time: 10},
+      {correct: true, time: 12},
+      {correct: true, time: 14},
+      {correct: true, time: 15},
+      {correct: true, time: 17},
+      {correct: false, time: 30},
+      {correct: false, time: 30}
+    ]}), {points: 12, pointFast: 16});
   });
 
   it(`should return 1 when 7 answers are correct and time of correct answer > 30 seconds`, () => {
-    let correctAnswers = getAnswers(true, 35, 7);
-    let uncorrectAnswers = getAnswers(false, 26, 3);
-    let totalAnswers = correctAnswers.concat(uncorrectAnswers);
-    assert.equal(calculatePoints(totalAnswers), 1);
+    assert.deepEqual(calculatePoints({answersArr: [
+      {correct: true, time: 36},
+      {correct: true, time: 37},
+      {correct: true, time: 35},
+      {correct: true, time: 40},
+      {correct: true, time: 32},
+      {correct: true, time: 34},
+      {correct: true, time: 35},
+      {correct: false, time: 17},
+      {correct: false, time: 30},
+      {correct: false, time: 30}
+    ]}), {points: 1, pointFast: 0});
   });
 
   it(`should return 10 if all answers are correct and time > 30 seconds`, () => {
-    assert.equal(calculatePoints(getAnswers(true, 40, 10)), 10);
+    assert.deepEqual(calculatePoints({answersArr: [
+      {correct: true, time: 36},
+      {correct: true, time: 37},
+      {correct: true, time: 35},
+      {correct: true, time: 40},
+      {correct: true, time: 32},
+      {correct: true, time: 34},
+      {correct: true, time: 35},
+      {correct: true, time: 37},
+      {correct: true, time: 33},
+      {correct: true, time: 33}
+    ]}), {points: 10, pointFast: 0});
   });
 
   it(`should return 20 if all answers are correct and time < 30 seconds`, () => {
-    assert.equal(calculatePoints(getAnswers(true, 25, 10)), 20);
+    assert.deepEqual(calculatePoints({answersArr: [
+      {correct: true, time: 26},
+      {correct: true, time: 17},
+      {correct: true, time: 25},
+      {correct: true, time: 10},
+      {correct: true, time: 12},
+      {correct: true, time: 14},
+      {correct: true, time: 15},
+      {correct: true, time: 17},
+      {correct: true, time: 27},
+      {correct: true, time: 26}
+    ]}), {points: 20, pointFast: 20});
   });
 
   it(`should return -20 if all answers are not correct`, () => {
-    assert.equal(calculatePoints(getAnswers(false, 20, 10)), -20);
+    assert.deepEqual(calculatePoints({answersArr: [
+      {correct: false, time: 26},
+      {correct: false, time: 17},
+      {correct: false, time: 25},
+      {correct: false, time: 10},
+      {correct: false, time: 12},
+      {correct: false, time: 14},
+      {correct: false, time: 15},
+      {correct: false, time: 17},
+      {correct: false, time: 27},
+      {correct: false, time: 26}
+    ]}), {points: -20, pointFast: 0});
   });
 
 });

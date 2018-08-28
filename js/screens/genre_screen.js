@@ -37,19 +37,28 @@ export default (state) => {
   const form = genreScreen.querySelector(`.game__tracks`);
   const answer = Array.from(form.querySelectorAll(`input`));
 
-  const answerButtonClickHandler = () => {
-    let newErrors;
+  const answerButtonClickHandler = (evt) => {
+    evt.preventDefault();
+    let newLives;
+    // const checkedAnswer = answer.filter((item) => item.checked).map((element) => element.id);
+    // const checkedAnswer = answer.filter((item) => item.checked).map((item) => questions.answers[item.value]);
+    // const checkedAnswer = answer.filter((item) => item.checked).map((element) => element.id);
     const checkedAnswer = answer.filter((item) => item.checked).map((element) => element.id);
-
-    if (questions.answers[checkedAnswer].correct) {
-      newErrors = state.errors;
+    // const correct = checkedAnswer.every((input) => input === questions.answers[input].correct);
+    const correct = Object.keys(questions.answers).every((key) => questions.answers[key].correct === checkedAnswer.includes(key));
+    // const rightAnswers = new Set(questions.answers.keys().filter((it) => questions.answers[it].correct));
+    // const userAnswers = new Set(checkedAnswer);
+    // const correct = [...rightAnswers].filter((it) => userAnswers.has(it)).length === rightAnswers.size;
+    // if (questions.answers[checkedAnswer].correct) {
+    if (correct) {
+      newLives = state.lives;
       state.answersArr.push({correct: true, time: 12});
     } else {
-      newErrors = state.errors + 1;
+      newLives = state.lives - 1;
       state.answersArr.push({correct: false, time: 12});
     }
 
-    const newState = Object.assign({}, state, {errors: newErrors, level: state.level + 1, answersArr: state.answersArr});
+    const newState = Object.assign({}, state, {lives: newLives, level: state.level + 1, answersArr: state.answersArr});
     changeScreen(newState);
     answer.forEach((item) => {
       item.checked = false;
@@ -81,7 +90,6 @@ export default (state) => {
 
   const players = Array.from(genreScreen.querySelectorAll(`div.track`));
   const playerButtons = players.map((element) => element.querySelector(`button`));
-
   const playAudio = (evt) => {
     const audio = genreScreen.querySelector(`audio`);
     if (audio.paused) {
@@ -92,7 +100,6 @@ export default (state) => {
       audio.pause();
     }
   };
-
   playerButtons.forEach((item) => {
     item.addEventListener(`click`, playAudio);
   });

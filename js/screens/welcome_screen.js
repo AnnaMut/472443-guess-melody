@@ -1,7 +1,7 @@
-import {getFragmentFromString, showScreen} from '../render';
-import genreScreen from './genre_screen';
+import {getFragmentFromString} from '../render';
 import string from '../data/string_data';
 import {initialState} from '../data/game_data';
+import {changeScreen} from './change_screen';
 
 export default () => {
   const content = `
@@ -22,7 +22,7 @@ export default () => {
   const playButton = welcomeScreen.querySelector(`.welcome__button`);
 
   const playButtonClickHandler = () => {
-    showScreen(genreScreen(initialState));
+    changeScreen(initialState);
   };
 
   playButton.addEventListener(`click`, playButtonClickHandler);

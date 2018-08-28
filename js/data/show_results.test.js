@@ -4,29 +4,29 @@ import {showResults} from './show_results';
 const statistics = [
   {
     points: 10,
-    errors: 2,
+    lives: 2,
     time: 45
   },
   {
     points: 4,
-    errors: 2,
+    lives: 2,
     time: 90
   },
   {
     points: 8,
-    errors: 1,
+    lives: 1,
     time: 7
   },
   {
     points: 9,
-    errors: 1,
+    lives: 1,
     time: 55
   }
 ];
 
-const getGameResult = (userPoints, userErrors, userTime) => ({
-  points: userPoints,
-  errors: userErrors,
+const getGameResult = (userPoints, userLives, userTime) => ({
+  UserPoint: userPoints,
+  lives: userLives,
   time: userTime
 });
 
@@ -36,7 +36,7 @@ describe(`Show results`, () => {
   });
 
   it(`should return У вас закончились все попытки. Ничего, повезёт в следующий раз!`, () => {
-    assert.equal(showResults(statistics, getGameResult(10, 4, 45)), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
+    assert.equal(showResults(statistics, getGameResult(10, -1, 45)), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
   });
 
   it(`should return Вы заняли 1 место из 5 игроков. Это лучше, чем у 80% игроков`, () => {

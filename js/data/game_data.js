@@ -171,7 +171,7 @@ const shuffleArray = (arr) => {
 
 export const initialState = Object.freeze({
   time: Time.MAX,
-  errors: 0,
+  lives: 3,
   questions: shuffleArray(gameQuestions),
   level: 0,
   answersArr: []

@@ -6,11 +6,11 @@ import {calculatePoints} from '../data/calc_points';
 import {showResults} from '../data/show_results';
 
 export default (state) => {
-  const userPoints = calculatePoints(state);
+  const {userPoints} = calculatePoints(state);
   const result = {
     points: userPoints,
     time: state.time,
-    errors: state.errors
+    lives: state.lives
   };
 
   const results = [3, 5, 6, 7, 3];

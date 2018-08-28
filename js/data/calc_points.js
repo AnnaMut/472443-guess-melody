@@ -9,23 +9,18 @@ const Points = {
 
 export const calculatePoints = (state) => {
   let points = 0;
+  let pointFast = 0;
   if (state.answersArr.length < MAX_QUESTIONS) {
     return Points.LOOSE;
   }
-  if (state.errors < 0) {
-    throw new Error(`Errors should be >= 0`);
-  }
   state.answersArr.forEach((answer) => {
-    if (answer.correct && answer.time < Time.FAST) {
-      points += Points.FAST;
-    }
-    if (answer.correct && answer.time >= Time.FAST) {
-      points += Points.DEFAULT;
-    }
-    if (!answer.correct) {
+    if (answer.correct) {
+      points += (answer.time < Time.FAST) ? Points.FAST : Points.DEFAULT;
+      pointFast += (answer.time < Time.FAST) ? Points.FAST : 0;
+    } else {
       points += Points.WRONG;
     }
   });
-  return points;
+  return {points, pointFast};
 };
 

@@ -20,7 +20,7 @@ export default (state) => `
 </div>
 
 <div class="game__mistakes">
-${new Array(initialState.errors + state.errors)
+${new Array(initialState.lives - state.lives)
   .fill(`<div class="wrong"></div>`)
   .join(``)}
 </div>

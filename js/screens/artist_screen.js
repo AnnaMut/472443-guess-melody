@@ -7,6 +7,7 @@ import {initialState} from '../data/game_data';
 
 export default (state) => {
   const questions = state.questions[state.level];
+
   const content = `
 <section class="game game--artist">
 ${header(state)}
@@ -35,19 +36,20 @@ ${header(state)}
 
   const form = artistScreen.querySelector(`.game__artist`);
 
-  const answerButtonClickHandler = () => {
-    let newErrors;
+  const answerButtonClickHandler = (evt) => {
+    evt.preventDefault();
+    let newLives;
     const answerNode = form.elements[`answer`];
 
     if (answerNode && questions.answers[answerNode.value].correct) {
-      newErrors = state.errors;
+      newLives = state.lives;
       state.answersArr.push({correct: true, time: 12});
     } else {
-      newErrors = state.errors + 1;
+      newLives = state.lives - 1;
       state.answersArr.push({correct: false, time: 12});
     }
 
-    const newGameState = Object.assign({}, state, {errors: newErrors, level: state.level + 1, answersArr: state.answersArr});
+    const newGameState = Object.assign({}, state, {lives: newLives, level: state.level + 1, answersArr: state.answersArr});
     changeScreen(newGameState);
   };
 
@@ -62,7 +64,6 @@ ${header(state)}
   artistScreen.querySelector(`.game__back`).addEventListener(`click`, replayButtonClickHandler);
 
   const playerButton = artistScreen.querySelector(`div.game__track`).querySelector(`button`);
-
   const playAudio = () => {
     const audio = artistScreen.querySelector(`audio`);
     if (audio.paused) {
@@ -73,6 +74,7 @@ ${header(state)}
       audio.pause();
     }
   };
+
   playerButton.addEventListener(`click`, playAudio);
 
   return artistScreen;

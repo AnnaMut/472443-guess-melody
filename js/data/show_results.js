@@ -4,10 +4,10 @@ export const showResults = (statistics, gameResult) => {
   if (gameResult.time <= 0) {
     return `${string.result.timeLose}`;
   }
-  if (gameResult.errors > 3) {
+  if (gameResult.lives < 0) {
     return `${string.result.loseStat}`;
   }
-  const userPoints = gameResult.points;
+  const userPoints = gameResult.UserPoint;
   const points = statistics.map((item) => item.points);
   points.push(userPoints);
   points.sort((a, b) => b - a);

@@ -7,12 +7,12 @@ import {showResults} from '../data/show_results';
 import {formatWord} from '../utils';
 
 export default (state) => {
-  const userPoints = calculatePoints(state);
+  const {points, pointFast} = calculatePoints(state);
 
   const result = {
-    points: userPoints,
+    UserPoint: points,
     time: state.time,
-    errors: state.errors
+    lives: state.lives
   };
 
   const results = [10, 5, 6, 7];
@@ -20,7 +20,7 @@ export default (state) => {
   <section class="result">
   <div class="result__logo"><img src="img/melody-logo.png" alt="${string.header.logo}" width="186" height="83"></div>
   <h2 class="result__title">${string.result.win}</h2>
-  <p class="result__total">За 3 минуты и 25 секунд вы набрали ${userPoints}&#160${formatWord(userPoints, `point`)} (8 быстрых), совершив ${result.errors}&#160${formatWord(result.errors, `note`)}</p>
+  <p class="result__total">За 3 минуты и 25 секунд вы набрали ${points}&#160${formatWord(points, `point`)} (${pointFast}&#160${formatWord(pointFast, `fast`)}), совершив ${3 - result.lives}&#160${formatWord(3 - result.lives, `note`)}</p>
   <p class="result__text">${showResults(results, result)}</p>
   <button class="result__replay" type="button">${string.buttons.replay}</button>
 </section>
