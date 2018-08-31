@@ -1,20 +1,15 @@
-
-import header from '../screens/header';
 import {playerArtist} from '../screens/player';
 import AbstractView from '../views/abstract_view';
 
 export default class ArtistView extends AbstractView {
-
-  constructor(state) {
+  constructor(questions) {
     super();
-    this.state = state;
-    this.questions = state.questions[state.level];
+    this.questions = questions;
   }
 
   get template() {
     return `
     <section class="game game--artist">
-    ${header(this.state)}
         <section class="game__screen">
           <h2 class="game__title">${this.questions.question}</h2>
           ${playerArtist(this.questions.src)}
@@ -36,23 +31,17 @@ export default class ArtistView extends AbstractView {
 
   answerButtonClickHandler() {}
 
-  replayButtonClickHandler() {}
-
   bind() {
     const form = this.element.querySelector(`.game__artist`);
     const answerButton = Array.from(form.querySelectorAll(`.artist__input`));
 
     answerButton.forEach((item) => {
-      item.addEventListener(`click`, this.answerButtonClickHandler);
+      item.addEventListener(`click`, () => {
+        const checkedAnswer = answerButton.filter((input) => input.checked).map((element) => element.value);
+        this.answerButtonClickHandler(checkedAnswer);
+      });
     });
-
-    const answerNode = form.elements[`answer`];
-
-    this.element.querySelector(`.game__back`).addEventListener(`click`, this.replayButtonClickHandler);
-
-    const playerButton = this.element.querySelector(`div.game__track`).querySelector(`button`);
-
-    playerButton.addEventListener(`click`, this.playAudio);
   }
-
 }
+
+

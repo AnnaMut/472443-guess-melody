@@ -50,6 +50,5 @@ describe(`Show results`, () => {
   it(`should return Вы заняли 5 место из 5 игроков. Это лучше, чем у 0% игроков`, () => {
     assert.equal(showResults(statistics, getGameResult(3, 2, 140)), `Вы заняли 5 место из 5 игроков. Это лучше, чем у 0% игроков`);
   });
-
 });
 

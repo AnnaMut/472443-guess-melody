@@ -1,9 +1,7 @@
-
 import string from '../data/string_data';
 import AbstractView from '../views/abstract_view';
 
 export default class WelcomeView extends AbstractView {
-
   constructor() {
     super();
   }
@@ -32,7 +30,6 @@ export default class WelcomeView extends AbstractView {
     playButton.addEventListener(`click`, () => {
       this.playButtonClickHandler();
     });
-
   }
 }
 

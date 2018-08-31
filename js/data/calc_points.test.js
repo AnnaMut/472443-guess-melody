@@ -84,5 +84,4 @@ describe(`Calculate Points`, () => {
       {correct: false, time: 26}
     ]}), {points: -20, pointFast: 0});
   });
-
 });

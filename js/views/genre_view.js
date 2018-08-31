@@ -1,20 +1,16 @@
-import header from '../screens/header';
 import {playerGenre} from '../screens/player';
 import AbstractView from '../views/abstract_view';
 import string from '../data/string_data';
 
 export default class GenreView extends AbstractView {
-
-  constructor(state) {
+  constructor(questions) {
     super();
-    this.state = state;
-    this.questions = state.questions[state.level];
+    this.questions = questions;
   }
 
   get template() {
     return `
     <section class="game game--genre">
-    ${header(this.state)}
     <section class="game__screen">
       <h2 class="game__title">${this.questions.question}</h2>
       <form class="game__tracks">
@@ -36,35 +32,30 @@ export default class GenreView extends AbstractView {
 
   answerButtonClickHandler() {}
 
-  replayButtonClickHandler() {}
-
-  answersChangeHandler() {}
-
-  playAudio() {}
-
   bind() {
-    const answerButton = this.element.querySelector(`.game__submit`);
-
-    answerButton.addEventListener(`click`, this.answerButtonClickHandler);
-
-    this.element.querySelector(`.game__back`).addEventListener(`click`, this.replayButtonClickHandler);
-
-    const answer = Array.from(this.element.querySelectorAll(`input`));
-
-    answer.forEach((item) => {
-      item.addEventListener(`change`, this.answersChangeHandler);
-    });
-
+    const form = this.element.querySelector(`.game__tracks`);
+    const answers = Array.from(form.querySelectorAll(`input`));
+    const answerButton = form.querySelector(`.game__submit`);
     answerButton.disabled = true;
-    // const playerButton = this.element.querySelector(`div.game__track`).querySelector(`button`);
-    const players = Array.from(this.element.querySelectorAll(`div.track`));
-    const playerButtons = players.map((element) => element.querySelector(`button`));
-    playerButtons.forEach((item) => {
-      item.addEventListener(`click`, this.playAudio);
+
+    const answersChangeHandler = () => {
+      if (answers.some((element) => element.checked)) {
+        answerButton.disabled = false;
+      } else {
+        answerButton.disabled = true;
+      }
+    };
+
+    answers.forEach((item) => {
+      item.addEventListener(`change`, answersChangeHandler);
     });
 
+    answerButton.addEventListener(`click`, () => {
+      const checkedAnswer = answers.filter((input) => input.checked).map((element) => element.id);
+      this.answerButtonClickHandler(checkedAnswer);
+    });
+    // const players = Array.from(this.element.querySelectorAll(`.track`));
   }
-
 }
 
 
