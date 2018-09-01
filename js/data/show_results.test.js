@@ -36,11 +36,11 @@ describe(`Show results`, () => {
   });
 
   it(`should return У вас закончились все попытки. Ничего, повезёт в следующий раз!`, () => {
-    assert.equal(showResults(statistics, getGameResult(10, -1, 45)), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
+    assert.equal(showResults(statistics, getGameResult(10, 0, 45)), `У вас закончились все попытки. Ничего, повезёт в следующий раз!`);
   });
 
   it(`should return Вы заняли 1 место из 5 игроков. Это лучше, чем у 80% игроков`, () => {
-    assert.equal(showResults(statistics, getGameResult(20, 0, 140)), `Вы заняли 1 место из 5 игроков. Это лучше, чем у 80% игроков`);
+    assert.equal(showResults(statistics, getGameResult(20, 3, 140)), `Вы заняли 1 место из 5 игроков. Это лучше, чем у 80% игроков`);
   });
 
   it(`should return Вы заняли 4 место из 5 игроков. Это лучше, чем у 20% игроков`, () => {

@@ -54,7 +54,25 @@ export default class GenreView extends AbstractView {
       const checkedAnswer = answers.filter((input) => input.checked).map((element) => element.id);
       this.answerButtonClickHandler(checkedAnswer);
     });
-    // const players = Array.from(this.element.querySelectorAll(`.track`));
+
+    const players = Array.from(this.element.querySelectorAll(`div.track`));
+    const playerButtons = players.map((element) => element.querySelector(`.track__button`));
+    const audio = Array.from(this.element.querySelectorAll(`audio`));
+
+    const playAudio = (evt) => {
+      if (audio.paused) {
+        evt.target.classList.replace(`track__button--play`, `track__button--pause`);
+        audio.play();
+      } else {
+        evt.target.classList.replace(`track__button--pause`, `track__button--play`);
+        audio.pause();
+      }
+    };
+
+    playerButtons.forEach((item) => {
+      item.addEventListener(`click`, playAudio);
+    });
+
   }
 }
 

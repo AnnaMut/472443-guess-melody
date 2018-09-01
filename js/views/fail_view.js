@@ -32,6 +32,8 @@ export default class FailView extends AbstractView {
   replayButtonClickHandler() {}
 
   bind() {
-    this.element.querySelector(`.result__replay`).addEventListener(`click`, this.replayButtonClickHandler());
+    this.element.querySelector(`.result__replay`).addEventListener(`click`, () => {
+      this.replayButtonClickHandler();
+    });
   }
 }

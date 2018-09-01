@@ -32,11 +32,13 @@ const screenGame = (state) => {
     }
 
     const newState = Object.assign({}, state, {lives: newLives, level: state.level + 1, answersArr: state.answersArr});
-    showScreen(screenGame(newState));
-    if ((state.lives < 0) || (state.time < 0)) {
-      showScreen(failScreen(state));
-    } else if (state.level === MAX_QUESTIONS) {
-      showScreen(winScreen(state));
+
+    if ((newState.lives <= 0) || (newState.time < 0)) {
+      showScreen(failScreen(newState));
+    } else if (newState.level === MAX_QUESTIONS) {
+      showScreen(winScreen(newState));
+    } else {
+      showScreen(screenGame(newState));
     }
   };
 

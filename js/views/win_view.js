@@ -11,7 +11,7 @@ export default class WinView extends AbstractView {
     this.state = state;
     const {points, pointFast} = calculatePoints(this.state);
     this.points = points;
-    this.pointsFast = pointFast;
+    this.pointFast = pointFast;
     this.result = {
       UserPoint: points,
       time: state.time,
@@ -35,7 +35,9 @@ export default class WinView extends AbstractView {
   replayButtonClickHandler() {}
 
   bind() {
-    this.element.querySelector(`.result__replay`).addEventListener(`click`, this.replayButtonClickHandler());
+    this.element.querySelector(`.result__replay`).addEventListener(`click`, () => {
+      this.replayButtonClickHandler();
+    });
   }
 }
 

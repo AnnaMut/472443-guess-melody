@@ -40,6 +40,8 @@ ${new Array(initialState.lives - this.lives)
   replayButtonClickHandler() {}
 
   bind() {
-    this.element.querySelector(`.game__back`).addEventListener(`click`, this.replayButtonClickHandler());
+    this.element.querySelector(`.game__back`).addEventListener(`click`, () => {
+      this.replayButtonClickHandler();
+    });
   }
 }

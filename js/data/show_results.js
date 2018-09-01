@@ -4,7 +4,7 @@ export const showResults = (statistics, gameResult) => {
   if (gameResult.time <= 0) {
     return `${string.result.timeLose}`;
   }
-  if (gameResult.lives < 0) {
+  if (gameResult.lives <= 0) {
     return `${string.result.loseStat}`;
   }
   const userPoints = gameResult.UserPoint;
