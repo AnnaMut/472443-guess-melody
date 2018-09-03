@@ -1,16 +1,19 @@
 import {playerGenre} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
+import header from '../screens/header';
 
 export default class GenreView extends AbstractView {
-  constructor(questions) {
+  constructor(state) {
     super();
-    this.questions = questions;
+    this.state = state;
+    this.questions = state.questions[state.level];
   }
 
   get template() {
     return `
     <section class="game game--genre">
+    ${header(this.state)}
     <section class="game__screen">
       <h2 class="game__title">${this.questions.question}</h2>
       <form class="game__tracks">
@@ -73,6 +76,9 @@ export default class GenreView extends AbstractView {
       item.addEventListener(`click`, playAudio);
     });
 
+    this.element.querySelector(`.game__back`).addEventListener(`click`, () => {
+      this.replayButtonClickHandler();
+    });
   }
 }
 

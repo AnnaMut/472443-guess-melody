@@ -1,15 +1,18 @@
 import {playerArtist} from '../screens/player';
 import AbstractView from '../views/abstract-view';
+import header from '../screens/header';
 
 export default class ArtistView extends AbstractView {
-  constructor(questions) {
+  constructor(state) {
     super();
-    this.questions = questions;
+    this.state = state;
+    this.questions = state.questions[state.level];
   }
 
   get template() {
     return `
     <section class="game game--artist">
+    ${header(this.state)}
         <section class="game__screen">
           <h2 class="game__title">${this.questions.question}</h2>
           ${playerArtist(this.questions.src)}
@@ -30,6 +33,8 @@ export default class ArtistView extends AbstractView {
   }
 
   answerButtonClickHandler() {}
+
+  replayButtonClickHandler() {}
 
   bind() {
     const form = this.element.querySelector(`.game__artist`);
@@ -55,6 +60,10 @@ export default class ArtistView extends AbstractView {
       }
     };
     playerButton.addEventListener(`click`, playAudio);
+
+    this.element.querySelector(`.game__back`).addEventListener(`click`, () => {
+      this.replayButtonClickHandler();
+    });
   }
 }
 

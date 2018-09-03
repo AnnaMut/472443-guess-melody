@@ -1,6 +1,5 @@
 import {MAX_QUESTIONS} from '../data/game-data';
 import {showScreen} from "../render";
-import HeaderView from "../views/header-view";
 import ArtistView from "../views/artist-view";
 import GenreView from "../views/genre-view";
 import welcomeScreen from '../screens/welcome-screen';
@@ -12,12 +11,10 @@ const ScreenView = {
   genre: GenreView
 };
 
-const screenGame = (state) => {
-  const questions = state.questions[state.level];
+const gameScreen = (state) => {
 
-  const screen = new ScreenView[questions.type](questions);
-  const header = new HeaderView(state.lives);
-  screen.element.insertBefore(header.element, screen.element.querySelector(`.game__screen`));
+  const questions = state.questions[state.level];
+  const screen = new ScreenView[questions.type](state);
 
   screen.answerButtonClickHandler = (answer) => {
     event.preventDefault();
@@ -38,15 +35,15 @@ const screenGame = (state) => {
     } else if (newState.level === MAX_QUESTIONS) {
       showScreen(winScreen(newState));
     } else {
-      showScreen(screenGame(newState));
+      showScreen(gameScreen(newState));
     }
   };
 
-  header.replayButtonClickHandler = () => {
+  screen.replayButtonClickHandler = () => {
     showScreen(welcomeScreen());
   };
 
   return screen.element;
 };
 
-export default screenGame;
+export default gameScreen;
