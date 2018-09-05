@@ -39,5 +39,8 @@ export default class GameModel {
     this._state.answersArr.push({correct, time: 12});
   }
 
+  tick() {
+    this._state = Object.assign({}, this.state, {time: this._state.time - 1});
+  }
 
 }

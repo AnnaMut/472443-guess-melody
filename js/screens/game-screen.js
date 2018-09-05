@@ -4,6 +4,7 @@ import GenreView from "../views/genre-view";
 import FailView from '../views/fail-view';
 import WinView from '../views/win-view';
 import Router from '../router';
+import header from '../screens/header';
 
 const ScreenView = {
   artist: ArtistView,
@@ -13,11 +14,13 @@ const ScreenView = {
 export default class GameScreen {
   constructor(model) {
     this.model = model;
+    this.ONE_SECOND = 1000;
     this.screen = new ScreenView[this.model.screenQuestion().type](this.model.state, this.model.screenQuestion());
     this.bind();
   }
 
   get element() {
+    this.startTimer();
     return this.screen.element;
   }
 
@@ -26,8 +29,25 @@ export default class GameScreen {
     showScreen(new GameScreen(this.model).element);
   }
 
+  updateHeader() {
+    const headerElement = document.querySelector(`header`);
+    headerElement.innerHTML = header(this.model.state);
+  }
+
+  startTimer() {
+    this.timer = setTimeout(() => {
+      this.model.tick();
+      this.startTimer();
+    }, this.ONE_SECOND);
+  }
+
+  stopTimer() {
+    clearTimeout(this.timer);
+  }
+
   bind() {
     this.screen.answerButtonClickHandler = (answer) => {
+      this.stopTimer();
       this.model.getAnswers(answer);
 
       if (this.model.fail()) {

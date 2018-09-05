@@ -1,6 +1,16 @@
 import string from '../data/string-data';
 import {initialState} from '../data/game-data';
 
+const getMin = (time) => {
+  const result = Math.floor(time / 60);
+  return result < 10 ? `0` + result : result;
+};
+
+const getSec = (time)=> {
+  const result = Math.floor(time % 60);
+  return result < 10 ? `0` + result : result;
+};
+
 export default (state) => `
 <header class="game__header">
 <a class="game__back" href="#">
@@ -12,9 +22,9 @@ export default (state) => `
           style="filter: url(.#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
 </svg>
 <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-  <span class="timer__mins">05</span>
+  <span class="timer__mins">${getMin(state.time)}</span>
   <span class="timer__dots">:</span>
-  <span class="timer__secs">00</span>
+  <span class="timer__secs">${getSec(state.time)}</span>
 </div>
 <div class="game__mistakes">
 ${new Array(initialState.lives - state.lives)
