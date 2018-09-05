@@ -3,10 +3,11 @@ import AbstractView from '../views/abstract-view';
 import header from '../screens/header';
 
 export default class ArtistView extends AbstractView {
-  constructor(state) {
+  constructor(questions) {
     super();
-    this.state = state;
-    this.questions = state.questions[state.level];
+    // this.state = state;
+    // this.questions = state.questions[state.level];
+    this.questions = questions;
   }
 
   get template() {

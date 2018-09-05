@@ -1,4 +1,3 @@
-import {showScreen} from './render';
-import welcomeScreen from './screens/welcome-screen';
+import Router from './router';
 
-showScreen(welcomeScreen());
+Router.showWelcome();

@@ -4,10 +4,11 @@ import string from '../data/string-data';
 import header from '../screens/header';
 
 export default class GenreView extends AbstractView {
-  constructor(state) {
+  constructor(questions) {
     super();
-    this.state = state;
-    this.questions = state.questions[state.level];
+    // this.state = state;
+    // this.questions = state.questions[state.level];
+    this.questions = questions;
   }
 
   get template() {
@@ -53,7 +54,8 @@ export default class GenreView extends AbstractView {
       item.addEventListener(`change`, answersChangeHandler);
     });
 
-    answerButton.addEventListener(`click`, () => {
+    answerButton.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
       const checkedAnswer = answers.filter((input) => input.checked).map((element) => element.id);
       this.answerButtonClickHandler(checkedAnswer);
     });

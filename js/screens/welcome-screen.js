@@ -1,15 +1,21 @@
 import {initialState} from '../data/game-data';
-import {showScreen} from '../render';
+// import {showScreen} from '../render';
 import WelcomeView from '../views/welcome-view';
-import gameScreen from "../screens/game-screen";
+// import gameScreen from "../screens/game-screen";
+import Router from '../router';
 
-export default (state) => {
-  const screen = new WelcomeView(state);
+export default class WelcomeScreen {
+  constructor() {
+    this.screen = new WelcomeView(initialState);
+    this.bind();
+  }
 
-  screen.playButtonClickHandler = () => {
-    showScreen(gameScreen(initialState));
-  };
+  get element() {
+    return this.screen.element;
+  }
 
-  return screen.element;
-};
+  bind() {
+    this.screen.playButtonClickHandler = () => Router.showGame();
+  }
+}
 
