@@ -17,10 +17,10 @@ export default (state) => `
   <span class="timer__secs">00</span>
 </div>
 <div class="game__mistakes">
-${new Array(2)
+${new Array(initialState.lives - state.lives)
   .fill(`<div class="wrong"></div>`)
   .join(``)}
 </div>
 </header>
 `;
-// initialState.lives - state.lives
+

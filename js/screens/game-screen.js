@@ -13,7 +13,7 @@ const ScreenView = {
 export default class GameScreen {
   constructor(model) {
     this.model = model;
-    this.screen = new ScreenView[this.model.screenQuestion.type](this.model.screenQuestion);
+    this.screen = new ScreenView[this.model.screenQuestion().type](this.model.state, this.model.screenQuestion());
     this.bind();
   }
 

@@ -4,10 +4,9 @@ import header from '../screens/header';
 import {getFragmentFromString} from '../render';
 
 export default class ArtistView extends AbstractView {
-  constructor(questions, state) {
+  constructor(state, questions) {
     super();
     this.state = state;
-    // this.questions = state.questions[state.level];
     this.questions = questions;
   }
 
