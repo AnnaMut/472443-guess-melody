@@ -1,4 +1,4 @@
-import {initialState, gameQuestions} from './game-data';
+import {initialState, gameQuestions, MAX_QUESTIONS} from './game-data';
 
 export default class GameModel {
   constructor() {
@@ -14,14 +14,12 @@ export default class GameModel {
     return this.questions[this.level];
   }
 
-  // changeLevel() {
-    // return this.state.level + 1;
-    //this.state = Object.assign({}, this.state);
-    //return this.state.level + 1;
-  // }
+  changeLevel() {
+    return this.state.level++;
+  }
 
   restart() {
-    this.state = initialState;
+    this.state = Object.assign({}, initialState, {answersArr: []});
   }
 
   fail() {
@@ -29,24 +27,15 @@ export default class GameModel {
   }
 
   win() {
-    return this.state.level === this.state.answersArr.length;
+    return this.state.answersArr.length === MAX_QUESTIONS;
   }
 
   getAnswers(answer) {
-    const correct = answer.correct;
-
-    // const correct = Object.keys(this.questions.answers).every((key) => this.questions.answers[key].correct === answer.includes(key));
-    if (correct) {
-      this.state = Object.assign({}, this.state);
-      this.state.level++;
-      this.state.answersArr.push({correct: true, time: 12});
-    } else {
-      this.state = Object.assign({}, this.state);
+    const correct = Object.keys(this.screenQuestion.answers).every((key) => this.screenQuestion.answers[key].correct === answer.includes(key));
+    if (!correct) {
       this.state.lives--;
-      this.state.level++;
-      this.state.answersArr.push({correct: false, time: 12});
     }
-
+    this.state.answersArr.push({correct, time: 12});
   }
 
 

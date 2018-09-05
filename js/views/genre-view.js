@@ -2,11 +2,12 @@ import {playerGenre} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
 import header from '../screens/header';
+import {getFragmentFromString} from '../render';
 
 export default class GenreView extends AbstractView {
-  constructor(questions) {
+  constructor(questions, state) {
     super();
-    // this.state = state;
+    this.state = state;
     // this.questions = state.questions[state.level];
     this.questions = questions;
   }
@@ -34,7 +35,14 @@ export default class GenreView extends AbstractView {
   `;
   }
 
+  updateHeader(state) {
+    const headerNode = getFragmentFromString(header(state));
+    this.element.replaceChild(headerNode, this.element.firstElementChild);
+  }
+
   answerButtonClickHandler() {}
+
+  replayButtonClickHandler() {}
 
   bind() {
     const form = this.element.querySelector(`.game__tracks`);
