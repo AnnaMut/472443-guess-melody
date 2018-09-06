@@ -3,6 +3,8 @@ import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
 import header from '../screens/header';
 // import {getFragmentFromString} from '../render';
+const DEBUG = true;
+const DEBUG_STYLE = `style="border:1px solid red;"`;
 
 export default class GenreView extends AbstractView {
   constructor(state, questions) {
@@ -22,7 +24,7 @@ export default class GenreView extends AbstractView {
     return `${playerGenre(answer.song.src)}
       <div class="game__answer">
             <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="${id}">
-            <label class="game__check" for="${id}">Отметить</label>
+            <label class="game__check" ${DEBUG && answer.correct ? DEBUG_STYLE : ``} for="${id}">Отметить</label>
           </div>
           </div>`
     ;

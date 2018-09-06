@@ -2,6 +2,8 @@ import {playerArtist} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import header from '../screens/header';
 // import {getFragmentFromString} from '../render';
+const DEBUG = true;
+const DEBUG_STYLE = `style="color:red;"`;
 
 export default class ArtistView extends AbstractView {
   constructor(state, questions) {
@@ -21,7 +23,7 @@ export default class ArtistView extends AbstractView {
           ${[...Object.entries(this.questions.answers)].map(([value, answer], i) => {
     return `<div class="artist">
             <input class="artist__input visually-hidden" type="radio" name="answer" value="${value}" id="answer-${i + 1}">
-            <label class="artist__name" for="answer-${i + 1}">
+            <label class="artist__name" ${DEBUG && answer.correct ? DEBUG_STYLE : ``} for="answer-${i + 1}">
               <img class="artist__picture" src="${answer.song.image}" alt="${answer.song.name}">
               ${answer.song.name}
             </label>
