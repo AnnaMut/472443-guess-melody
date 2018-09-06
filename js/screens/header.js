@@ -1,12 +1,12 @@
 import string from '../data/string-data';
 import {initialState} from '../data/game-data';
 
-const getMin = (time) => {
+export const getMin = (time) => {
   const result = Math.floor(time / 60);
   return result < 10 ? `0` + result : result;
 };
 
-const getSec = (time)=> {
+export const getSec = (time)=> {
   const result = Math.floor(time % 60);
   return result < 10 ? `0` + result : result;
 };
