@@ -2,7 +2,7 @@ import {playerGenre} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
 import header from '../screens/header';
-import {getFragmentFromString} from '../render';
+// import {getFragmentFromString} from '../render';
 
 export default class GenreView extends AbstractView {
   constructor(state, questions) {
@@ -34,10 +34,10 @@ export default class GenreView extends AbstractView {
   `;
   }
 
-  updateHeader(state) {
-    const headerNode = getFragmentFromString(header(state));
-    this.element.replaceChild(headerNode, this.element.firstElementChild);
-  }
+  // updateHeader(state) {
+  // const headerNode = getFragmentFromString(header(state));
+  // this.element.replaceChild(headerNode, this.element.firstElementChild);
+  // }
 
   answerButtonClickHandler() {}
 

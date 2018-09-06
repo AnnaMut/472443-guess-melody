@@ -5,6 +5,7 @@ import FailView from '../views/fail-view';
 import WinView from '../views/win-view';
 import Router from '../router';
 import header from '../screens/header';
+import {getFragmentFromString} from '../render';
 
 const ScreenView = {
   artist: ArtistView,
@@ -21,6 +22,7 @@ export default class GameScreen {
 
   get element() {
     this.startTimer();
+    this.updateHeader();
     return this.screen.element;
   }
 
@@ -30,8 +32,8 @@ export default class GameScreen {
   }
 
   updateHeader() {
-    const headerElement = document.querySelector(`header`);
-    headerElement.innerHTML = header(this.model.state);
+    const headerNode = getFragmentFromString(header(this.model.state));
+    this.screen.element.replaceChild(headerNode, this.screen.element.firstElementChild);
   }
 
   startTimer() {
@@ -57,6 +59,7 @@ export default class GameScreen {
       } else {
         this.showNextGame();
       }
+      this.updateHeader();
     };
 
     this.screen.replayButtonClickHandler = () => {

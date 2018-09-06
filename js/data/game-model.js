@@ -24,7 +24,7 @@ export default class GameModel {
   }
 
   fail() {
-    return this._state.lives === 0 || this._state.time === 0;
+    return this._state.lives === 0 || this._state.time <= 0;
   }
 
   win() {
@@ -36,7 +36,7 @@ export default class GameModel {
     if (!correct) {
       this._state.lives--;
     }
-    this._state.answersArr.push({correct, time: 12});
+    this._state.answersArr.push({correct, time: initialState.time - this._state.time});
   }
 
   tick() {
