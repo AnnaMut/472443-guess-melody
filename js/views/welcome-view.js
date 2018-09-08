@@ -10,7 +10,7 @@ export default class WelcomeView extends AbstractView {
     return `
 <section class="welcome">
 <div class="welcome__logo"><img src="img/melody-logo.png" alt="${string.header.logo}" width="186" height="83"></div>
-<button class="welcome__button"><span class="visually-hidden">${string.buttons.play}</span></button>
+<button class="welcome__button" disabled><span class="visually-hidden">${string.buttons.play}</span></button>
 <h2 class="welcome__rules-title">${string.welcome.title}</h2>
 <p class="welcome__text">${string.welcome.rulesTitle}</p>
 <ul class="welcome__rules-list">
@@ -20,6 +20,11 @@ export default class WelcomeView extends AbstractView {
 <p class="welcome__text">${string.welcome.welcomText}</p>
 </section>
 `;
+  }
+
+  play() {
+    this.element.querySelector(`.welcome__button`).removeAttribute(`disabled`);
+    // this.element.querySelector(`.preload-title`).classList.add(`preload-title--hidden`);
   }
 
   playButtonClickHandler() {}
