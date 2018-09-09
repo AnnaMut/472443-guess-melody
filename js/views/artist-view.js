@@ -56,9 +56,11 @@ export default class ArtistView extends AbstractView {
     });
 
     const playerButton = this.element.querySelector(`.track__button`);
-    const audio = this.element.querySelector(`audio`);
 
-    const playAudio = () => {
+    playerButton.classList.replace(`track__button--play`, `track__button--pause`);
+
+    const playAudioHandler = () => {
+      const audio = this.element.querySelector(`audio`);
       if (audio.paused) {
         playerButton.classList.replace(`track__button--play`, `track__button--pause`);
         audio.play();
@@ -67,10 +69,13 @@ export default class ArtistView extends AbstractView {
         audio.pause();
       }
     };
-    playerButton.addEventListener(`click`, playAudio);
+    playerButton.addEventListener(`click`, playAudioHandler);
 
-    this.element.querySelector(`.game__back`).addEventListener(`click`, () => {
-      this.replayButtonClickHandler();
+    this.element.addEventListener(`click`, (evt) => {
+      if (evt.target.classList.contains(`game__back`) || evt.target.classList.contains(`game__logo`)) {
+        evt.preventDefault();
+        this.replayButtonClickHandler();
+      }
     });
   }
 }

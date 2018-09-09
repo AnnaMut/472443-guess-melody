@@ -40,7 +40,7 @@ export default class GameModel {
   }
 
   tick() {
-    this._state = Object.assign({}, this.state, {time: this._state.time - 1});
+    this._state.time--;
   }
 
 }

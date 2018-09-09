@@ -24,7 +24,6 @@ export default class WelcomeView extends AbstractView {
 
   play() {
     this.element.querySelector(`.welcome__button`).removeAttribute(`disabled`);
-    // this.element.querySelector(`.preload-title`).classList.add(`preload-title--hidden`);
   }
 
   playButtonClickHandler() {}

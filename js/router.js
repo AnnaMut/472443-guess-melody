@@ -50,7 +50,6 @@ export default class Router {
   }
 
   static startGame(data) {
-    initialState.questions.length = 0;
     data.forEach((el) => initialState.questions.push(el));
     Router.showWelcome().screen.play();
   }

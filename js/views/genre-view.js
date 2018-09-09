@@ -49,6 +49,8 @@ export default class GenreView extends AbstractView {
     const form = this.element.querySelector(`.game__tracks`);
     const answers = Array.from(form.querySelectorAll(`input`));
     const answerButton = form.querySelector(`.game__submit`);
+    const playerButtons = Array.from(form.querySelectorAll(`.track__button`));
+    const audio = Array.from(form.querySelectorAll(`audio`));
     answerButton.disabled = true;
 
     const answersChangeHandler = () => {
@@ -69,28 +71,38 @@ export default class GenreView extends AbstractView {
       this.answerButtonClickHandler(checkedAnswer);
     });
 
-    const players = Array.from(this.element.querySelectorAll(`div.track`));
-    const playerButtons = players.map((element) => element.querySelector(`.track__button`));
-    const audio = Array.from(this.element.querySelectorAll(`audio`));
+    playerButtons[0].classList.replace(`track__button--play`, `track__button--pause`);
+    audio[0].setAttribute(`autoplay`, true);
 
-    const playAudio = (evt) => {
-      if (audio.paused) {
+    const pauseAudio = (element) => {
+      element.querySelector(`audio`).pause();
+    };
+
+    const playAudio = (element) => {
+      element.querySelector(`audio`).play();
+    };
+
+    const playAudioHandler = (evt) => {
+      if (evt.target.classList.contains(`track__button--play`)) {
         evt.target.classList.replace(`track__button--play`, `track__button--pause`);
-        audio.play();
+        playAudio(evt.target.nextElementSibling);
       } else {
         evt.target.classList.replace(`track__button--pause`, `track__button--play`);
-        audio.pause();
+        pauseAudio(evt.target.nextElementSibling);
       }
     };
 
     playerButtons.forEach((item) => {
-      item.addEventListener(`click`, playAudio);
+      item.addEventListener(`click`, playAudioHandler);
     });
 
-    this.element.querySelector(`.game__back`).addEventListener(`click`, () => {
-      this.replayButtonClickHandler();
+    this.element.addEventListener(`click`, (evt) => {
+      if (evt.target.classList.contains(`game__back`) || evt.target.classList.contains(`game__logo`)) {
+        evt.preventDefault();
+        this.replayButtonClickHandler();
+      }
     });
+
   }
 }
-
 

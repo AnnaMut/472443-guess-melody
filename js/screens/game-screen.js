@@ -6,6 +6,7 @@ import WinView from '../views/win-view';
 import Router from '../router';
 import header from '../screens/header';
 import {getFragmentFromString} from '../render';
+import ConfirmView from '../views/confirm-view';
 
 const ScreenView = {
   artist: ArtistView,
@@ -17,6 +18,7 @@ export default class GameScreen {
     this.model = model;
     this.ONE_SECOND = 1000;
     this.screen = new ScreenView[this.model.screenQuestion().type](this.model.state, this.model.screenQuestion());
+    this.confirmView = new ConfirmView();
     this.bind();
   }
 
@@ -47,6 +49,18 @@ export default class GameScreen {
     clearTimeout(this.timer);
   }
 
+  showModal() {
+    this.confirmView.showModal();
+    this.confirmView.confirmButtonClickHandler = () => {
+      this.stopTimer();
+      Router.start();
+      this.confirmView.closeModal();
+    };
+    this.confirmView.closeModalClickHandler = () => {
+      this.confirmView.closeModal();
+    };
+  }
+
   bind() {
     this.screen.answerButtonClickHandler = (answer) => {
       this.stopTimer();
@@ -63,7 +77,7 @@ export default class GameScreen {
     };
 
     this.screen.replayButtonClickHandler = () => {
-      Router.showWelcome();
+      this.showModal();
     };
 
   }
