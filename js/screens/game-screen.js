@@ -50,7 +50,6 @@ export default class GameScreen {
     this.screen.element.replaceChild(this.headerView.element, this.screen.element.firstChild);
   }
 
-
   showModal() {
     this.confirmView.showModal();
     this.confirmView.confirmButtonClickHandler = () => {
