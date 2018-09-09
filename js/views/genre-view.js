@@ -1,8 +1,6 @@
 import {playerGenre} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
-import header from '../screens/header';
-// import {getFragmentFromString} from '../render';
 const DEBUG = true;
 const DEBUG_STYLE = `style="border:1px solid red;"`;
 
@@ -16,7 +14,6 @@ export default class GenreView extends AbstractView {
   get template() {
     return `
     <section class="game game--genre">
-    ${header(this.state)}
     <section class="game__screen">
       <h2 class="game__title">${this.questions.question}</h2>
       <form class="game__tracks">
@@ -35,11 +32,6 @@ export default class GenreView extends AbstractView {
   </section>
   `;
   }
-
-  // updateHeader(state) {
-  // const headerNode = getFragmentFromString(header(state));
-  // this.element.replaceChild(headerNode, this.element.firstElementChild);
-  // }
 
   answerButtonClickHandler() {}
 

@@ -1,7 +1,5 @@
 import {playerArtist} from '../screens/player';
 import AbstractView from '../views/abstract-view';
-import header from '../screens/header';
-// import {getFragmentFromString} from '../render';
 const DEBUG = true;
 const DEBUG_STYLE = `style="color:red;"`;
 
@@ -15,7 +13,6 @@ export default class ArtistView extends AbstractView {
   get template() {
     return `
     <section class="game game--artist">
-    ${header(this.state)}
         <section class="game__screen">
           <h2 class="game__title">${this.questions.question}</h2>
           ${playerArtist(this.questions.src)}
@@ -34,11 +31,6 @@ export default class ArtistView extends AbstractView {
         </section>
       </section>`;
   }
-
-  // updateHeader(state) {
-  // const headerNode = getFragmentFromString(header(state));
-  // this.element.replaceChild(headerNode, this.element.firstElementChild);
-  // }
 
   answerButtonClickHandler() {}
 
