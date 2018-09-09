@@ -14,11 +14,13 @@ const checkStatus = (response) => {
   }
 };
 
+const GET_URL = `https://es.dump.academy/guess-melody/questions`;
+
 export default class Router {
 
   static start() {
     Router.showWelcome();
-    window.fetch(`https://es.dump.academy/guess-melody/questions`).
+    window.fetch(GET_URL).
       then(checkStatus).
       then((response) => response.json()).
       then((data) => adaptServerData(data)).

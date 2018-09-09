@@ -4,9 +4,8 @@ import GenreView from "../views/genre-view";
 import FailView from '../views/fail-view';
 import WinView from '../views/win-view';
 import Router from '../router';
-import header from '../screens/header';
-import {getFragmentFromString} from '../render';
 import ConfirmView from '../views/confirm-view';
+import HeaderView from '../views/header-view';
 
 const ScreenView = {
   artist: ArtistView,
@@ -19,12 +18,13 @@ export default class GameScreen {
     this.ONE_SECOND = 1000;
     this.screen = new ScreenView[this.model.screenQuestion().type](this.model.state, this.model.screenQuestion());
     this.confirmView = new ConfirmView();
+    this.headerView = new HeaderView(this.model.state);
+    this.screen.element.insertBefore(this.headerView.element, this.screen.element.firstChild);
     this.bind();
   }
 
   get element() {
     this.startTimer();
-    this.updateHeader();
     return this.screen.element;
   }
 
@@ -33,14 +33,10 @@ export default class GameScreen {
     showScreen(new GameScreen(this.model).element);
   }
 
-  updateHeader() {
-    const headerNode = getFragmentFromString(header(this.model.state));
-    this.screen.element.replaceChild(headerNode, this.screen.element.firstElementChild);
-  }
-
   startTimer() {
     this.timer = setTimeout(() => {
       this.model.tick();
+      this.updateHeader();
       this.startTimer();
     }, this.ONE_SECOND);
   }
@@ -48,6 +44,12 @@ export default class GameScreen {
   stopTimer() {
     clearTimeout(this.timer);
   }
+
+  updateHeader() {
+    this.headerView = new HeaderView(this.model.state);
+    this.screen.element.replaceChild(this.headerView.element, this.screen.element.firstChild);
+  }
+
 
   showModal() {
     this.confirmView.showModal();
