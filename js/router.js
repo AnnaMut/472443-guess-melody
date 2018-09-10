@@ -20,7 +20,7 @@ export default class Router {
 
   static start() {
     Router.showWelcome();
-    window.fetch(GET_URL).
+    fetch(GET_URL).
       then(checkStatus).
       then((response) => response.json()).
       then((data) => adaptServerData(data)).
