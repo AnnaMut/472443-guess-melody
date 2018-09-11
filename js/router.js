@@ -3,7 +3,7 @@ import WelcomeScreen from './screens/welcome-screen';
 import GameScreen from './screens/game-screen';
 import GameModel from './data/game-model';
 import ErrorView from './views/error-view';
-import {initialState} from './data/game-data';
+import {initialState, Time} from './data/game-data';
 import Loader from './loader';
 
 export default class Router {
@@ -30,7 +30,7 @@ export default class Router {
     result.replayButtonClickHandler = () => {
       this.showGame();
     };
-    if (result.result.lives > 0 && result.result.time > 0) {
+    if (result.result.lives > 0 && result.result.time < Time.MAX) {
       Loader.loadResults().
         then((data)=> {
           (showScreen(result.element));
