@@ -32,7 +32,7 @@ const getGameResult = (userPoints, userLives, userTime) => ({
 
 describe(`Show results`, () => {
   it(`should return Время вышло! Вы не успели отгадать все мелодии`, () => {
-    assert.equal(showResults(statistics, getGameResult(10, 2, 0)), `Время вышло! Вы не успели отгадать все мелодии`);
+    assert.equal(showResults(statistics, getGameResult(10, 2, 300)), `Время вышло! Вы не успели отгадать все мелодии`);
   });
 
   it(`should return У вас закончились все попытки. Ничего, повезёт в следующий раз!`, () => {
