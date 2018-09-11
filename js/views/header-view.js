@@ -6,7 +6,7 @@ export default class HeaderView extends AbstractView {
   constructor(state) {
     super();
     this.state = state;
-    this.FINISHED = 30;
+    this.finished = 30;
     this.min = Math.floor(this.state.time / 60);
     this.sec = Math.floor(this.state.time % 60);
   }
@@ -20,9 +20,9 @@ export default class HeaderView extends AbstractView {
     </a>
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
       <circle class="timer__line" cx="390" cy="390" r="370"
-              style="filter: url(.#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+              style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
     </svg>
-    <div class="timer__value ${this.state.time < this.FINISHED ? `timer__value--finished` : ``}" xmlns="http://www.w3.org/1999/xhtml">
+    <div class="timer__value ${this.state.time < this.finished ? `timer__value--finished` : ``}" xmlns="http://www.w3.org/1999/xhtml">
       <span class="timer__mins">0${this.min}</span>
       <span class="timer__dots">:</span>
       <span class="timer__secs">${(this.sec < 10) ? `0${this.sec}` : this.sec}</span>
