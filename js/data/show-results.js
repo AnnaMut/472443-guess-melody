@@ -1,7 +1,8 @@
 import string from './string-data';
+import {Time} from './game-data';
 
 export const showResults = (statistics, gameResult) => {
-  if (gameResult.time <= 0) {
+  if (gameResult.time >= Time.MAX) {
     return `${string.result.timeLose}`;
   }
   if (gameResult.lives <= 0) {
