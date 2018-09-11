@@ -35,3 +35,4 @@ export default class FailView extends AbstractView {
     });
   }
 }
+
