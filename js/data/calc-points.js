@@ -15,12 +15,14 @@ export const calculatePoints = (state) => {
   }
   state.answersArr.forEach((answer) => {
     if (answer.correct) {
-      points += (answer.time < Time.FAST) ? Points.FAST : Points.DEFAULT;
-      pointFast += (answer.time < Time.FAST) ? Points.FAST : 0;
+      points += answer.time >= Time.FAST ? Points.DEFAULT : Points.FAST;
+      pointFast += answer.time >= Time.FAST ? 0 : Points.FAST;
     } else {
       points += Points.WRONG;
+      pointFast += pointFast > 0 ? Points.WRONG : 0;
     }
   });
+
   return {points, pointFast};
 };
 

@@ -3,22 +3,22 @@ import {showResults} from './show-results';
 
 const statistics = [
   {
-    points: 10,
+    UserPoint: 10,
     lives: 2,
     time: 45
   },
   {
-    points: 4,
+    UserPoint: 4,
     lives: 2,
     time: 90
   },
   {
-    points: 8,
+    UserPoint: 8,
     lives: 1,
     time: 7
   },
   {
-    points: 9,
+    UserPoint: 9,
     lives: 1,
     time: 55
   }

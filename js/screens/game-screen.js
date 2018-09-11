@@ -38,6 +38,10 @@ export default class GameScreen {
       this.model.tick();
       this.updateHeader();
       this.startTimer();
+      if (this.model.fail()) {
+        this.stopTimer();
+        Router.showResult(new FailView(this.model.state));
+      }
     }, this.ONE_SECOND);
   }
 

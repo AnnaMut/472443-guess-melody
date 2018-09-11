@@ -36,11 +36,15 @@ export default class GameModel {
     if (!correct) {
       this._state.lives--;
     }
-    this._state.answersArr.push({correct, time: initialState.time - this._state.time});
+    this._state.answersArr.push({correct, time: this.getAnswerTime()});
   }
 
   tick() {
     this._state.time--;
+  }
+
+  getAnswerTime() {
+    return initialState.time - this._state.time;
   }
 
 }

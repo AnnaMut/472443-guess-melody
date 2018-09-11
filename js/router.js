@@ -3,27 +3,14 @@ import WelcomeScreen from './screens/welcome-screen';
 import GameScreen from './screens/game-screen';
 import GameModel from './data/game-model';
 import ErrorView from './views/error-view';
-import adaptServerData from './data/data-adapter';
 import {initialState} from './data/game-data';
-
-const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
-
-const GET_URL = `https://es.dump.academy/guess-melody/questions`;
+import Loader from './loader';
 
 export default class Router {
 
   static start() {
     Router.showWelcome();
-    fetch(GET_URL).
-      then(checkStatus).
-      then((response) => response.json()).
-      then((data) => adaptServerData(data)).
+    Loader.loadData().
       then((data) => Router.startGame(data)).
       catch(Router.showError);
   }
@@ -43,7 +30,15 @@ export default class Router {
     result.replayButtonClickHandler = () => {
       this.showGame();
     };
-    showScreen(result.element);
+    if (result.result.lives > 0 && result.result.time > 0) {
+      Loader.loadResults().
+        then(showScreen(result.element)).
+        then((data) => result.showStats(data)).
+        then(Loader.saveResults(result.result)).
+        catch(Router.showError);
+    } else {
+      showScreen(result.element);
+    }
   }
 
   static showError(error) {

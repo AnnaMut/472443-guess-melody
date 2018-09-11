@@ -10,7 +10,7 @@ describe(`Calculate Points`, () => {
     ]}), -1);
   });
 
-  it(`should return {points: 12, pointFast: 16} when 8 answers are correct and time of correct answer < 30 seconds`, () => {
+  it(`should return {points: 12, pointFast: 12} when 8 answers are correct and time of correct answer < 30 seconds`, () => {
     assert.deepEqual(calculatePoints({answersArr: [
       {correct: true, time: 26},
       {correct: true, time: 17},
@@ -22,7 +22,7 @@ describe(`Calculate Points`, () => {
       {correct: true, time: 17},
       {correct: false, time: 30},
       {correct: false, time: 30}
-    ]}), {points: 12, pointFast: 16});
+    ]}), {points: 12, pointFast: 12});
   });
 
   it(`should return 1 when 7 answers are correct and time of correct answer > 30 seconds`, () => {

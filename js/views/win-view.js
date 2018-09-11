@@ -19,7 +19,6 @@ export default class WinView extends AbstractView {
     };
     this.min = Math.floor(this.result.time / 60);
     this.sec = Math.floor(this.result.time % 60);
-    this.results = [10, 5, 6, 7];
   }
 
   get template() {
@@ -28,7 +27,7 @@ export default class WinView extends AbstractView {
   <div class="result__logo"><img src="img/melody-logo.png" alt="${string.header.logo}" width="186" height="83"></div>
   <h2 class="result__title">${string.result.win}</h2>
   <p class="result__total">За 0${this.min}&#160${formatWord((this.min), `min`)} и ${this.sec}&#160${formatWord((this.sec), `sec`)} вы набрали ${this.points}&#160${formatWord(this.points, `point`)} (${this.pointFast}&#160${formatWord(this.pointFast, `fast`)}), совершив ${initialState.lives - this.result.lives}&#160${formatWord(initialState.lives - this.result.lives, `note`)}</p>
-  <p class="result__text">${showResults(this.results, this.result)}</p>
+  <p class="result__text"></p>
   <button class="result__replay" type="button">${string.buttons.replay}</button>
 </section>
 `;
@@ -40,6 +39,11 @@ export default class WinView extends AbstractView {
     this.element.querySelector(`.result__replay`).addEventListener(`click`, () => {
       this.replayButtonClickHandler();
     });
+  }
+
+  showStats(results) {
+    const comparisonStats = this.element.querySelector(`.result__text`);
+    comparisonStats.textContent = showResults(results, this.result);
   }
 }
 

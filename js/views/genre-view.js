@@ -1,4 +1,4 @@
-import {playerGenre} from '../screens/player';
+import {playerGenre, playTrack} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
 const DEBUG = true;
@@ -41,8 +41,8 @@ export default class GenreView extends AbstractView {
     const form = this.element.querySelector(`.game__tracks`);
     const answers = Array.from(form.querySelectorAll(`input`));
     const answerButton = form.querySelector(`.game__submit`);
-    const playerButtons = Array.from(form.querySelectorAll(`.track__button`));
-    const audio = Array.from(form.querySelectorAll(`audio`));
+    const tracks = Array.from(this.element.querySelectorAll(`.track`));
+
     answerButton.disabled = true;
 
     const answersChangeHandler = () => {
@@ -63,30 +63,7 @@ export default class GenreView extends AbstractView {
       this.answerButtonClickHandler(checkedAnswer);
     });
 
-    playerButtons[0].classList.replace(`track__button--play`, `track__button--pause`);
-    audio[0].setAttribute(`autoplay`, true);
-
-    const pauseAudio = (element) => {
-      element.querySelector(`audio`).pause();
-    };
-
-    const playAudio = (element) => {
-      element.querySelector(`audio`).play();
-    };
-
-    const playAudioHandler = (evt) => {
-      if (evt.target.classList.contains(`track__button--play`)) {
-        evt.target.classList.replace(`track__button--play`, `track__button--pause`);
-        playAudio(evt.target.nextElementSibling);
-      } else {
-        evt.target.classList.replace(`track__button--pause`, `track__button--play`);
-        pauseAudio(evt.target.nextElementSibling);
-      }
-    };
-
-    playerButtons.forEach((item) => {
-      item.addEventListener(`click`, playAudioHandler);
-    });
+    playTrack(tracks);
 
     this.element.addEventListener(`click`, (evt) => {
       if (evt.target.classList.contains(`game__back`) || evt.target.classList.contains(`game__logo`)) {
