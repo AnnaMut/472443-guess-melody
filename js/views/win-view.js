@@ -13,7 +13,7 @@ export default class WinView extends AbstractView {
     this.points = points;
     this.pointFast = pointFast;
     this.result = {
-      UserPoint: points,
+      userPoint: points,
       time: initialState.time - state.time,
       lives: state.lives
     };

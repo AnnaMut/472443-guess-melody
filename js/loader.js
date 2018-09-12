@@ -3,9 +3,13 @@ import adaptServerData from './data/data-adapter';
 const URL = `https://es.dump.academy/guess-melody`;
 
 const APP_ID = 33883388;
+const Statuses = {
+  SUCСESS: 200,
+  MULTIPLE_CHOICES: 300
+};
 
 const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= Statuses.SUCСESS && response.status < Statuses.MULTIPLE_CHOICES) {
     return response;
   } else {
     throw new Error(`${response.status}: ${response.statusText}`);

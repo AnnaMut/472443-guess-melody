@@ -9,7 +9,7 @@ export default class FailView extends AbstractView {
     this.state = state;
 
     this.result = {
-      UserPoint: null,
+      userPoint: null,
       time: initialState.time - this.state.time,
       lives: this.state.lives
     };

@@ -3,29 +3,29 @@ import {showResults} from './show-results';
 
 const statistics = [
   {
-    UserPoint: 10,
+    userPoint: 10,
     lives: 2,
     time: 45
   },
   {
-    UserPoint: 4,
+    userPoint: 4,
     lives: 2,
     time: 90
   },
   {
-    UserPoint: 8,
+    userPoint: 8,
     lives: 1,
     time: 7
   },
   {
-    UserPoint: 9,
+    userPoint: 9,
     lives: 1,
     time: 55
   }
 ];
 
 const getGameResult = (userPoints, userLives, userTime) => ({
-  UserPoint: userPoints,
+  userPoint: userPoints,
   lives: userLives,
   time: userTime
 });

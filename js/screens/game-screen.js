@@ -7,6 +7,8 @@ import Router from '../router';
 import ConfirmView from '../views/confirm-view';
 import HeaderView from '../views/header-view';
 
+const ONE_SECOND = 1000;
+
 const ScreenView = {
   artist: ArtistView,
   genre: GenreView
@@ -15,7 +17,6 @@ const ScreenView = {
 export default class GameScreen {
   constructor(model) {
     this.model = model;
-    this.ONE_SECOND = 1000;
     this.screen = new ScreenView[this.model.screenQuestion().type](this.model.state, this.model.screenQuestion());
     this.confirmView = new ConfirmView();
     this.headerView = new HeaderView(this.model.state);
@@ -42,7 +43,7 @@ export default class GameScreen {
         this.stopTimer();
         Router.showResult(new FailView(this.model.state));
       }
-    }, this.ONE_SECOND);
+    }, ONE_SECOND);
   }
 
   stopTimer() {
