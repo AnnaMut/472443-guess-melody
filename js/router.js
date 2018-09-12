@@ -32,12 +32,14 @@ export default class Router {
     };
     if (result.result.lives > 0 && result.result.time < Time.MAX) {
       Loader.loadResults().
-        then((data)=> {
-          (showScreen(result.element));
-          result.showStats(data);
-        }).
-        then(()=>Loader.saveResults(result.result)).
-        catch(Router.showError);
+          then((data) => {
+            showScreen(result.element);
+            result.showStats(data);
+          }).
+          then(() => {
+            Loader.saveResults(result.result);
+          }).
+          catch(Router.showError);
     } else {
       showScreen(result.element);
     }

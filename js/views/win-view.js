@@ -42,8 +42,8 @@ export default class WinView extends AbstractView {
   }
 
   showStats(results) {
-    const comparisonStats = this.element.querySelector(`.result__text`);
-    comparisonStats.textContent = showResults(results, this.result);
+    const stats = this.element.querySelector(`.result__text`);
+    stats.textContent = showResults(results, this.result);
   }
 }
 

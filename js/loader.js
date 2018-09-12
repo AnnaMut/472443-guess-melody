@@ -11,14 +11,14 @@ const Statuses = {
 const checkStatus = (response) => {
   if (response.status >= Statuses.SUCСESS && response.status < Statuses.MULTIPLE_CHOICES) {
     return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
   }
+  throw new Error(`${response.status}: ${response.statusText}`);
 };
 
 const toJSON = (res) => res.json();
 
 export default class Loader {
+
   static loadData() {
     return fetch(`${URL}/questions`)
       .then(checkStatus)
@@ -44,3 +44,4 @@ export default class Loader {
       .then(checkStatus);
   }
 }
+
