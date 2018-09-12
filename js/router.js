@@ -1,7 +1,7 @@
 import {showScreen} from './render';
 import WelcomeScreen from './screens/welcome-screen';
 import GameScreen from './screens/game-screen';
-import GameModel from './data/game-model';
+import GameModel from './game/game-model';
 import ErrorView from './views/error-view';
 import {initialState, Time} from './data/game-data';
 import Loader from './loader';

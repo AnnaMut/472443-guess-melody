@@ -1,5 +1,5 @@
 import string from '../data/string-data';
-import {showResults} from '../data/show-results';
+import {showResults} from '../game/show-results';
 import AbstractView from '../views/abstract-view';
 import {initialState} from '../data/game-data';
 

@@ -1,4 +1,4 @@
-import {MAX_QUESTIONS, Time} from './game-data';
+import {MAX_QUESTIONS, Time} from '../data/game-data';
 
 const Points = {
   LOOSE: -1,

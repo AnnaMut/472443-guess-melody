@@ -1,5 +1,6 @@
 import {playerArtist, playTrack} from '../screens/player';
 import AbstractView from '../views/abstract-view';
+
 const DEBUG = new URLSearchParams(location.search).has(`debug`);
 const DEBUG_STYLE = `style="color:red;"`;
 

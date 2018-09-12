@@ -12,11 +12,11 @@ export const playerArtist = (src) => `
 </div>`;
 
 export const playTrack = (tracks) => {
-  const audioList = Array.from(tracks.map((item) => item.querySelector(`audio`)));
-  const buttonsList = Array.from(tracks.map((item) => item.querySelector(`button`)));
+  const audios = Array.from(tracks.map((item) => item.querySelector(`audio`)));
+  const buttons = Array.from(tracks.map((item) => item.querySelector(`button`)));
 
   const stopAll = () => {
-    buttonsList.forEach((button, index) => {
+    buttons.forEach((button, index) => {
       if (button.classList.contains(`track__button--pause`)) {
         stopAudio(index);
       }
@@ -24,17 +24,17 @@ export const playTrack = (tracks) => {
   };
 
   const stopAudio = (index) => {
-    buttonsList[index].classList.replace(`track__button--pause`, `track__button--play`);
-    audioList[index].pause();
+    buttons[index].classList.replace(`track__button--pause`, `track__button--play`);
+    audios[index].pause();
   };
 
   const playAudio = (index) => {
-    buttonsList[index].classList.replace(`track__button--play`, `track__button--pause`);
-    audioList[index].play();
+    buttons[index].classList.replace(`track__button--play`, `track__button--pause`);
+    audios[index].play();
   };
 
-  buttonsList[0].classList.replace(`track__button--play`, `track__button--pause`);
-  audioList[0].setAttribute(`autoplay`, true);
+  buttons[0].classList.replace(`track__button--play`, `track__button--pause`);
+  audios[0].setAttribute(`autoplay`, true);
 
   const playAudioHandler = (evt, index) => {
     if (evt.target.classList.contains(`track__button--play`)) {
@@ -45,7 +45,7 @@ export const playTrack = (tracks) => {
     }
   };
 
-  buttonsList.forEach((item, index) => {
+  buttons.forEach((item, index) => {
     item.addEventListener(`click`, (evt) => playAudioHandler(evt, index));
   });
 };

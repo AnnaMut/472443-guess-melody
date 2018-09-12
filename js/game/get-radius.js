@@ -1,4 +1,4 @@
-import {Time} from './data/game-data';
+import {Time} from '../data/game-data';
 
 export const getRadius = (radius, time) => {
   const strokeDasharray = Math.floor(2 * Math.PI * radius);

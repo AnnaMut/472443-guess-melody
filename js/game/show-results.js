@@ -1,5 +1,5 @@
-import string from './string-data';
-import {Time} from './game-data';
+import string from '../data/string-data';
+import {Time} from '../data/game-data';
 
 export const showResults = (statistics, gameResult) => {
   if (gameResult.time >= Time.MAX) {

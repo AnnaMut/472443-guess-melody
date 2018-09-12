@@ -5,8 +5,6 @@ export const Time = {
 
 export const MAX_QUESTIONS = 10;
 
-export const MAX_ERRORS = 3;
-
 export const initialState = Object.freeze({
   time: Time.MAX,
   lives: 3,

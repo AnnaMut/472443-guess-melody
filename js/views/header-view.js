@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view';
 import string from '../data/string-data';
 import {initialState} from '../data/game-data';
-import {getRadius} from '../get-radius';
+import {getRadius} from '../game/get-radius';
 
 export default class HeaderView extends AbstractView {
   constructor(state) {
