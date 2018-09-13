@@ -36,9 +36,7 @@ export default class Router {
             showScreen(result.element);
             result.showStats(data);
           }).
-          then(() => {
-            Loader.saveResults(result.result);
-          }).
+          then(() => Loader.saveResults(result.result)).
           catch(Router.showError);
     } else {
       showScreen(result.element);
