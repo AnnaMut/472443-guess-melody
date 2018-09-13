@@ -47,9 +47,7 @@ export default class GenreView extends AbstractView {
     answerButton.disabled = true;
 
     const answersChangeHandler = () => {
-      if (answers.some((element) => element.checked)) {
-        answerButton.disabled = false;
-      }
+      answerButton.disabled = !answers.some((element) => element.checked);
     };
 
     answers.forEach((item) => {
