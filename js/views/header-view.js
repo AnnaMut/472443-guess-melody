@@ -25,7 +25,7 @@ export default class HeaderView extends AbstractView {
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
       <circle class="timer__line" cx="390" cy="390" r="${RADIUS}"
               style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"
-              stroke-dasharray="${this.line.strokeDasharray}" stroke-dashoffset="${this.line.strokeDashoffset}"/>
+              stroke-dasharray="${this.line.stroke}" stroke-dashoffset="${this.line.offset}"/>
     </svg>
     <div class="timer__value ${this.state.time < FINISHED ? `timer__value--finished` : ``}" xmlns="http://www.w3.org/1999/xhtml">
       <span class="timer__mins">0${this.min}</span>
@@ -33,9 +33,7 @@ export default class HeaderView extends AbstractView {
       <span class="timer__secs">${(this.sec < 10) ? `0${this.sec}` : this.sec}</span>
     </div>
     <div class="game__mistakes">
-    ${new Array(initialState.lives - this.state.lives)
-      .fill(`<div class="wrong"></div>`)
-      .join(``)}
+    ${`<div class="wrong"></div>`.repeat(initialState.lives - this.state.lives)}
     </div>
     </header>
     `;

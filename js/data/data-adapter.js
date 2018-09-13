@@ -27,7 +27,6 @@ const convertGenreAnswers = (answers, genre) => {
 
 export default (data) => {
   for (const question of data) {
-    question.type = question.type;
     question.title = question.question;
     if (question.type === `artist`) {
       question.answers = convertArtistAnswers(question.answers);

@@ -35,15 +35,16 @@ export default class WinView extends AbstractView {
 
   replayButtonClickHandler() {}
 
+  showStats(results) {
+    const stats = this.element.querySelector(`.result__text`);
+    stats.textContent = showResults(results, this.result);
+  }
+
   bind() {
     this.element.querySelector(`.result__replay`).addEventListener(`click`, () => {
       this.replayButtonClickHandler();
     });
   }
 
-  showStats(results) {
-    const stats = this.element.querySelector(`.result__text`);
-    stats.textContent = showResults(results, this.result);
-  }
 }
 

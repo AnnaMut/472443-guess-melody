@@ -1,4 +1,4 @@
-import {initialState, MAX_QUESTIONS} from '../data/game-data';
+import {initialState} from '../data/game-data';
 
 const getScreenQuestion = (state) => state.questions[state.level];
 
@@ -28,7 +28,7 @@ export default class GameModel {
   }
 
   win() {
-    return this._state.answersArr.length === MAX_QUESTIONS;
+    return this._state.answersArr.length === this._state.questions.length;
   }
 
   getAnswerTime() {
