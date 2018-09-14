@@ -1,4 +1,4 @@
-import {playerGenre, playTrack} from '../screens/player';
+import {getGenrePlayer, playTrack} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 import string from '../data/string-data';
 
@@ -19,7 +19,7 @@ export default class GenreView extends AbstractView {
       <h2 class="game__title">${this.questions.question}</h2>
       <form class="game__tracks">
       ${[...Object.entries(this.questions.answers)].map(([id, answer]) =>{
-    return `${playerGenre(answer.song.src)}
+    return `${getGenrePlayer(answer.song.src)}
       <div class="game__answer">
             <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="${id}">
             <label class="game__check" ${DEBUG && answer.correct ? DEBUG_STYLE : ``} for="${id}">Отметить</label>

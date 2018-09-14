@@ -13,14 +13,14 @@ export default class FailView extends AbstractView {
       time: initialState.time - this.state.time,
       lives: this.state.lives
     };
-    this.replic = this.state.lives <= 0 ? `${string.result.loseReplic}` : `${string.result.timeLoseReplic}`;
+    this.replica = this.state.lives <= 0 ? `${string.result.loseReplica}` : `${string.result.timeLoseReplica}`;
   }
 
   get template() {
     return `
 <section class="result">
 <div class="result__logo"><img src="img/melody-logo.png" alt="${string.header.logo}" width="186" height="83"></div>
-<h2 class="result__title">${this.replic}</h2>
+<h2 class="result__title">${this.replica}</h2>
 <p class="result__total result__total--fail">${showResults([], this.result)}</p>
 <button class="result__replay" type="button">${string.buttons.loseReplay}</button>
 </section>

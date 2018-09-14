@@ -8,7 +8,7 @@ export const showResults = (statistics, gameResult) => {
   if (gameResult.lives <= 0) {
     return `${string.result.loseStat}`;
   }
-  let userPoints = gameResult.userPoint;
+  const userPoints = gameResult.userPoint;
   const points = statistics.map((item) => item.userPoint);
   points.push(userPoints);
   points.sort((a, b) => b - a);

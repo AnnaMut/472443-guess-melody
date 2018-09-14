@@ -20,7 +20,7 @@ export default class GameModel {
   }
 
   restart() {
-    this._state = Object.assign({}, initialState, {answersArr: []});
+    this._state = Object.assign({}, initialState, {answers: []});
   }
 
   fail() {
@@ -28,7 +28,7 @@ export default class GameModel {
   }
 
   win() {
-    return this._state.answersArr.length === this._state.questions.length;
+    return this._state.answers.length === this._state.questions.length;
   }
 
   getAnswerTime() {
@@ -40,7 +40,7 @@ export default class GameModel {
     if (!correct) {
       this._state.lives--;
     }
-    this._state.answersArr.push({correct, time: this.getAnswerTime()});
+    this._state.answers.push({correct, time: this.getAnswerTime()});
   }
 
   tick() {

@@ -1,4 +1,4 @@
-import {playerArtist, playTrack} from '../screens/player';
+import {getArtistPlayer, playTrack} from '../screens/player';
 import AbstractView from '../views/abstract-view';
 
 const DEBUG = new URLSearchParams(location.search).has(`debug`);
@@ -16,7 +16,7 @@ export default class ArtistView extends AbstractView {
     <section class="game game--artist">
         <section class="game__screen">
           <h2 class="game__title">${this.questions.question}</h2>
-          ${playerArtist(this.questions.src)}
+          ${getArtistPlayer(this.questions.src)}
           <form class="game__artist">
           ${[...Object.entries(this.questions.answers)].map(([value, answer], i) => {
     return `<div class="artist">

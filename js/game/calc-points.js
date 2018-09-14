@@ -10,10 +10,10 @@ const Points = {
 export const calculatePoints = (state) => {
   let points = 0;
   let pointFast = 0;
-  if (state.answersArr.length < MAX_QUESTIONS) {
+  if (state.answers.length < MAX_QUESTIONS) {
     return Points.LOOSE;
   }
-  state.answersArr.forEach((answer) => {
+  state.answers.forEach((answer) => {
     if (answer.correct) {
       points += answer.time >= Time.FAST ? Points.DEFAULT : Points.FAST;
       pointFast += answer.time >= Time.FAST ? 0 : Points.FAST;

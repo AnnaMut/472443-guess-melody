@@ -10,5 +10,5 @@ export const initialState = Object.freeze({
   lives: 3,
   questions: [],
   level: 0,
-  answersArr: []
+  answers: []
 });
