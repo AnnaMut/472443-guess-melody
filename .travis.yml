@@ -3,17 +3,11 @@ language: node_js
 node_js:
   - "8.11"
 
-notifications:
-  email: false
-
-script: gulp build
-
-deploy:
-  provider: pages
-  skip-cleanup: true
-  local-dir: build
-  github-token: $GITHUB_TOKEN
-  keep-history: true
-  on:
-    branch: master
-
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  - npm run build
+env:
+  - TRAVIS_BUILD=true
