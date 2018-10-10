@@ -12,7 +12,7 @@ deploy:
   provider: pages
   skip-cleanup: true
   local-dir: build
-  github-token: $GITHUB_TOKEN
+  github-token: lXkqTKcP70z66H4pKkVc6g
   keep-history: true
   on:
     branch: master
