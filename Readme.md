@@ -1,4 +1,4 @@
-# Личный проект «Угадай мелодию» [![Build status][travis-image]][travis-url]
+# Личный проект «Угадай мелодию» 
 
 [![Build Status](https://travis-ci.org/annamut/472443-guess-melody.svg?branch=master)](https://travis-ci.org/annamut/472443-guess-melody)
 
