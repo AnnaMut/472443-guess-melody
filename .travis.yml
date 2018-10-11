@@ -11,3 +11,13 @@ script:
   - npm run build
 env:
   - TRAVIS_BUILD=true
+
+deploy:
+  provider: releases
+  api_key: "GITHUB OAUTH TOKEN"
+  github-token: $GITHUB_TOKEN
+  file: "FILE TO UPLOAD"
+  skip_cleanup: true
+  on:
+    branch: master
+
