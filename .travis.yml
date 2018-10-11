@@ -7,10 +7,9 @@ script: gulp build
 
 deploy:
   provider: pages
-  local-dir: build
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  on:
-    branch: master
+  local-dir: build
+
 
 
