@@ -11,16 +11,6 @@ deploy:
   on:
     branch: master
 
-
-  deploy:
-  provider: pages
-  local-dir: build
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  on:
-    branch: master
-
-
   script:
   - npm run ci
   - npm start
