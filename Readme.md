@@ -1,6 +1,6 @@
 # Личный проект «Угадай мелодию» 
 
-[![Build Status](https://travis-ci.org/AnnaMut/472443-guess-melody/builds)](https://travis-ci.org/AnnaMut/472443-guess-melody/builds)
+[![Build Status](https://travis-ci.org/AnnaMut/472443-guess-melody.svg?branch=master)](https://travis-ci.org/AnnaMut/472443-guess-melody.svg?branch=master)
 
 
 Посмотреть можно здесь: https://annamut.github.io/472443-guess-melody/
