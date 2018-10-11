@@ -3,6 +3,10 @@ language: node_js
 node_js:
   - "8.11"
 
+script:
+- npm run ci
+- npm run build
+
 deploy:
   provider: pages
   local-dir: build
@@ -11,6 +15,4 @@ deploy:
   on:
     branch: master
 
-  script:
-  - npm run ci
-  - npm start
+
